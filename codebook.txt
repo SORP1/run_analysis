@@ -1,0 +1,53 @@
+## Dowload Raw Data
+
+The raw data for this project is accelerometer data collected from the Samsung Galaxy S smartphone, and is provided at the links below:
+
+URL: "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+Codebook: "http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones"
+
+1. load "dplyr" package
+
+## Unzip files
+
+1. Unzip files.
+There will be a folder named "UCI HAR Dataset" and it includes 5 types of files and 2 folders:
+
+files: 
+- x: rows of feature measurements
+- y: the activity labels corresponding to each row of X. Encoded as numbers.
+- subject: the subjects on which each row of X was measured. Encoded as numbers
+- features.txt
+- activity_lables.txt
+
+folders:
+- test: the actual dataset for the test phase
+- train: the actual dataset for the train phase
+
+## Process Data
+
+1. Read each file into tables using <read.table()> and assign them a name
+
+2. Assign column names "activity" to "y" files & "subject" to "subject" files
+
+3. Replace the encoded numbers in "y" file with activities within the "activity_labels.txt" file
+
+4. Cbind 2 datasets, the first one cbinding all "train"" datasets and the second one all "test" datasets
+
+5. Rbind the datasets created in point 4
+
+6. Subset the data for the columns including "mean" & "std" by using the "grapl()" function and store it as "tidy_ds". This will be the first tidy dataset
+
+7. Using dplyr's "group_by" function, group the dataframe "tidy_ds" by "activity" and take the means of all columns using the "summarize()". Store the new dataframe as "mean_activity". This will be the second dataset
+
+## Write the new datasets as .txt files
+
+1. Write the first .txt file using the "tidy_ds" dataframe using the "write.table()" function.
+2. Write the first .txt file using the "mean_activity" dataframe using the "write.table()" function.
+
+## Output files
+
+There will be 2 output files:
+
+1. "tidy_ds.txt"
+2. "mean_activity.txt"
+
